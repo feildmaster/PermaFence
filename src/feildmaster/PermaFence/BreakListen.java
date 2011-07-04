@@ -8,15 +8,14 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockListener;
 
-class BreakListen extends BlockListener {
-    public BreakListen() {}
-    
+class BreakListen extends BlockListener {    
     public void onBlockBreak(BlockBreakEvent event) {
         if(event.getBlock().getType() == Material.FENCE) {
-            event.setCancelled(true);
             Player player = event.getPlayer();
             if(player.isOp() && player.getItemInHand().getType() == Material.GOLD_PICKAXE) {
                 event.setCancelled(false);
+            } else if(!event.isCancelled()) {
+                event.setCancelled(true);
             }
         }
     }

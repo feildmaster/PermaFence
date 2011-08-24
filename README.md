@@ -9,3 +9,4 @@ Usage
 2- All your fences are indestructible
 
 3- OP's can break fence with a gold hammer!
+   (players with "permafence.break")

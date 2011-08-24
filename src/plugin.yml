@@ -1,5 +1,8 @@
 name: PermaFence
 main: feildmaster.PermaFence.PermaFence
-version: 1.3
+version: 1.4
 author: feildmaster
-description: Indestructable fences
+description: Indestructible fences
+permissions:
+  permafence.break:
+    default: op

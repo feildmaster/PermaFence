@@ -10,11 +10,11 @@ import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
-class BreakListen extends BlockListener {    
+class BreakListen extends BlockListener {
     public void onBlockBreak(BlockBreakEvent event) {
         if(event.getBlock().getType() == Material.FENCE) {
             Player player = event.getPlayer();
-            if(player.isOp() && player.getItemInHand().getType() == Material.GOLD_PICKAXE)
+            if(player.hasPermission("permafence.break") && player.getItemInHand().getType() == Material.GOLD_PICKAXE)
                 event.setCancelled(false);
             else if(!event.isCancelled())
                 event.setCancelled(true);

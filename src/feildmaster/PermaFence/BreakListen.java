@@ -4,13 +4,19 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
-class BreakListen extends BlockListener {
+class BreakListen implements Listener {
+    public BreakListen(PermaFence plugin) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if(event.getBlock().getType() == Material.FENCE) {
             Player player = event.getPlayer();
@@ -21,17 +27,20 @@ class BreakListen extends BlockListener {
         }
     }
 
+    @EventHandler
     public void onBlockIgnite(BlockIgniteEvent event) {
         if(next2Fence(event.getBlock()))
             event.setCancelled(true);
     }
 
+    @EventHandler
     public void onBlockPistonExtend(BlockPistonExtendEvent event) {
         for(Block block : event.getBlocks())
             if(block.getType() == Material.FENCE)
                 event.setCancelled(true);
     }
 
+    @EventHandler
     public void onBlockPistonRetract(BlockPistonRetractEvent event) {
         if(event.getBlock().getRelative(event.getDirection(),2).getType() == Material.FENCE)
             event.setCancelled(true);

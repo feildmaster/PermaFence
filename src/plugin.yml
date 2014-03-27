@@ -1,6 +1,6 @@
 name: PermaFence
 main: feildmaster.PermaFence.PermaFence
-version: 1.4
+version: 1.5
 author: feildmaster
 description: Indestructible fences
 permissions:
